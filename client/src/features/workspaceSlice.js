@@ -1,17 +1,28 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../configs/api.js";
 
-export const fetchWorkspaces=createAsyncThunk('workspace/fetchWorkspaces', 
-    async ({getToken}) => {
-        try {
-            const {data}=await api.get('/api/workspaces',{headers:{Authorization:`Bearer ${await getToken()}`}})
 
-            return data.workspaces || []
-        } catch (error) {
-          console.log(error?.response?.data?.message || error.message);
-          return []
-        }
-    })
+
+export const fetchWorkspaces = createAsyncThunk(
+  'workspace/fetchWorkspaces',
+  async ({ getToken }, { rejectWithValue }) => {
+    try {
+      console.log("🟡 Fetching workspaces...");
+      const token = await getToken();
+      console.log("🟢 Token received:", token ? "YES" : "NO");
+
+      const { data } = await api.get('/api/workspaces', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      console.log("🟢 Workspaces fetched from backend:", data);
+      return data || [];
+    } catch (error) {
+      console.error("🔴 fetchWorkspaces error:", error?.response?.data || error.message);
+      return rejectWithValue(error.response?.data?.message || error.message);
+    }
+  }
+);
 
 const initialState = {
     workspaces:  [],
@@ -49,7 +60,7 @@ const workspaceSlice = createSlice({
             }
         },
         deleteWorkspace: (state, action) => {
-            state.workspaces = state.workspaces.filter((w) => w._id !== action.payload);
+            state.workspaces = state.workspaces.filter((w) => w.id !== action.payload);
         },
         addProject: (state, action) => {
             state.currentWorkspace.projects.push(action.payload);
@@ -121,6 +132,7 @@ const workspaceSlice = createSlice({
             state.loading=true
         });
             builder.addCase(fetchWorkspaces.fulfilled,(state,action)=>{
+            console.log("✅ Updating Redux with workspaces:", action.payload);
             state.workspaces=action.payload
 
             if(action.payload.length>0){

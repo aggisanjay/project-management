@@ -16,7 +16,7 @@ export const getUserWorkspaces=async(req,res)=>{
             include:{
                members:{
                 include:{
-                    user:true,
+                    user:true
                 }
                },
                projects:{
@@ -84,13 +84,13 @@ export const addMember=async(req,res)=>{
         }
 
         //check creator has admin role
-        if(!workspace.members.find(m=>m.userId===userId&&m.role==='ADMIN')){
+        if(!workspace.members.find((m)=>m.userId===userId&&m.role==='ADMIN')){
             return res.status(401).json({message:"You do not have admin privileges"})
         }
 
         //check if user is already a member
 
-        const existingMember=workspace.members.find(m=>m.userId===userId);
+        const existingMember=workspace.members.find((m)=>m.userId===userId);
         if(existingMember){
             return res.status(400).json({message:"User is already a member of this workspace"})
         }
