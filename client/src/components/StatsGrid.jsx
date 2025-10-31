@@ -55,22 +55,22 @@ export default function StatsGrid() {
             setStats({
                 totalProjects: currentWorkspace.projects.length,
                 activeProjects: currentWorkspace.projects.filter(
-                    (p) => p.status !== "CANCELLED" && p.status !== "COMPLETED"
+                    (p) => p?.status !== "CANCELLED" && p?.status !== "COMPLETED"
                 ).length,
                 completedProjects: currentWorkspace.projects
-                    .filter((p) => p.status === "COMPLETED")
+                    .filter((p) => p?.status === "COMPLETED")
                     .reduce((acc, project) => acc + project.tasks.length, 0),
                 myTasks: currentWorkspace.projects.reduce(
                     (acc, project) =>
                         acc +
-                        project.tasks.filter(
+                        project?.tasks.filter(
                             (t) => t.assignee?.email === currentWorkspace.owner.email
                         ).length,
                     0
                 ),
                 overdueIssues: currentWorkspace.projects.reduce(
                     (acc, project) =>
-                        acc + project.tasks.filter((t) => t.due_date < new Date()).length,
+                        acc + project?.tasks.filter((t) => t.due_date < new Date()).length,
                     0
                 ),
             });

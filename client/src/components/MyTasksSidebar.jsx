@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { CheckSquareIcon, ChevronDownIcon, ChevronRightIcon } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useUser } from '@clerk/clerk-react';
 
 function MyTasksSidebar() {
 
-    const user = { id: 'user_1' }
+    const {user}=useUser()
 
     const { currentWorkspace } = useSelector((state) => state.workspace);
     const [showMyTasks, setShowMyTasks] = useState(false);
@@ -30,7 +31,7 @@ function MyTasksSidebar() {
         const userId = user?.id || '';
         if (!userId || !currentWorkspace) return;
         const currentWorkspaceTasks = currentWorkspace.projects.flatMap((project) => {
-            return project.tasks.filter((task) => task?.assignee?.id === userId);
+            return project?.tasks.filter((task) => task?.assignee?.id === userId);
         });
 
         setMyTasks(currentWorkspaceTasks);

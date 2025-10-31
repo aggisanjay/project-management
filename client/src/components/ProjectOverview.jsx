@@ -52,36 +52,36 @@ const ProjectOverview = () => {
                 ) : (
                     <div className="divide-y divide-zinc-200 dark:divide-zinc-800">
                         {projects.slice(0, 5).map((project) => (
-                            <Link key={project.id} to={`/projectsDetail?id=${project.id}&tab=tasks`} className="block p-6 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors">
+                            <Link key={project?.id} to={`/projectsDetail?id=${project?.id}&tab=tasks`} className="block p-6 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors">
                                 <div className="flex items-start justify-between mb-3">
                                     <div className="flex-1">
                                         <h3 className="font-semibold text-zinc-800 dark:text-zinc-300 mb-1">
-                                            {project.name}
+                                            {project?.name}
                                         </h3>
                                         <p className="text-sm text-zinc-600 dark:text-zinc-400 line-clamp-2">
-                                            {project.description || 'No description'}
+                                            {project?.description || 'No description'}
                                         </p>
                                     </div>
                                     <div className="flex items-center gap-2 ml-4">
-                                        <span className={`text-xs px-2 py-1 rounded ${statusColors[project.status]}`}>
-                                            {project.status.replace('_', ' ').replaceAll(/\b\w/g, c => c.toUpperCase())}
+                                        <span className={`text-xs px-2 py-1 rounded ${statusColors[project?.status]}`}>
+                                            {project?.status.replace('_', ' ').replaceAll(/\b\w/g, c => c.toUpperCase())}
                                         </span>
-                                        <div className={`w-2 h-2 rounded-full border-2 ${priorityColors[project.priority]}`} />
+                                        <div className={`w-2 h-2 rounded-full border-2 ${priorityColors[project?.priority]}`} />
                                     </div>
                                 </div>
 
                                 <div className="flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-500 mb-3">
                                     <div className="flex items-center gap-4">
-                                        {project.members?.length > 0 && (
+                                        {project?.members?.length > 0 && (
                                             <div className="flex items-center gap-1">
                                                 <UsersIcon className="w-3 h-3" />
-                                                {project.members.length} members
+                                                {project?.members.length} members
                                             </div>
                                         )}
-                                        {project.end_date && (
+                                        {project?.end_date && (
                                             <div className="flex items-center gap-1">
                                                 <Calendar className="w-3 h-3" />
-                                                {format(new Date(project.end_date), "MMM d, yyyy")}
+                                                {format(new Date(project?.end_date), "MMM d, yyyy")}
                                             </div>
                                         )}
                                     </div>
@@ -90,10 +90,10 @@ const ProjectOverview = () => {
                                 <div className="space-y-2">
                                     <div className="flex items-center justify-between text-xs">
                                         <span className="text-zinc-500 dark:text-zinc-500">Progress</span>
-                                        <span className="text-zinc-600 dark:text-zinc-400">{project.progress || 0}%</span>
+                                        <span className="text-zinc-600 dark:text-zinc-400">{project?.progress || 0}%</span>
                                     </div>
                                     <div className="w-full bg-zinc-200 dark:bg-zinc-800 rounded h-1.5">
-                                        <div className="h-1.5 bg-blue-500 rounded" style={{ width: `${project.progress || 0}%` }} />
+                                        <div className="h-1.5 bg-blue-500 rounded" style={{ width: `${project?.progress || 0}%` }} />
                                     </div>
                                 </div>
                             </Link>
