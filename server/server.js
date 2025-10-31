@@ -14,10 +14,7 @@ import commentRouter from './routes/commentRoutes.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({
-  origin: ['http://localhost:5173'], // adjust if you’re using another frontend port
-  credentials: true,
-}));
+app.use(cors());
 app.use(express.json());
 app.use(clerkMiddleware());
 
