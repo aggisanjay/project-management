@@ -226,4 +226,12 @@ const sendTaskAssignmentEmail=inngest.createFunction(
 
 
 // Create an empty array where we'll export future Inngest functions
-export const functions = [syncUserCreation,syncUserDeletion,syncUserUpdation,syncWorkspaceCreation,syncWorkspaceUpdation,syncWorkspaceDeletion,syncWorkspaceMemberCreation,sendTaskAssignmentEmail];
+export const functions = [syncUserCreation,
+    syncUserDeletion,
+    syncUserUpdation,
+    syncWorkspaceCreation,
+    syncWorkspaceUpdation,
+    syncWorkspaceDeletion,
+    syncWorkspaceMemberCreation,
+    sendTaskAssignmentEmail,
+];
