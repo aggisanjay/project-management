@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "postinstall": "npx prisma generate",
-    "start": "primsa generate && node server.js",
+    "start": "prisma generate && node server.js",
     "dev": "nodemon server.js"
   },
   "keywords": [],
