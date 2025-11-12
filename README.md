@@ -134,10 +134,12 @@ npx prisma studio
 
 
 ## Dashboard
+<img width="1299" height="608" alt="image" src="https://github.com/user-attachments/assets/4e1ada74-a2b5-4298-9d38-8d1774ee0fc6" />
 
 
 ## Tasks
 
+<img width="1058" height="418" alt="image" src="https://github.com/user-attachments/assets/5c999cc1-0dff-42e7-8f9d-da4f7859a68d" />
 
 
 🧑‍💻 Author
